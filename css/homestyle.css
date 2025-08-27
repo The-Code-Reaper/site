@@ -1,0 +1,304 @@
+/* ===== Body & Layout ===== */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-image: url('../images/back.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    /* Fade-in setup */
+    opacity: 0;
+    background-color: black;
+    transition: opacity 1.5s ease;
+}
+body.loaded {
+    opacity: 1;
+}
+
+/* ===== Top-left Weather + Time Box ===== */
+.top-left-box {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    width: 160px;
+    min-height: 120px;
+    background-color: rgba(255, 0, 0, 0.51);
+    border: 2px solid black;
+    border-radius: 8px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 0 6px pink;
+    z-index: 100;
+    cursor: pointer;
+    padding: 10px;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+body.boxes-ready .top-left-box {
+    opacity: 1;
+}
+#time {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+#weatherBox {
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+/* ===== Top-right Social / Contact Boxes ===== */
+.top-right-box {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+body.boxes-ready .top-right-box {
+    opacity: 1;
+}
+.top-right-box a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 30px;
+    background-color: rgba(255, 0, 0, 0.51);
+    border: 2px solid black;
+    border-radius: 6px;
+    color: black;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 0 6px pink;
+    transition: transform 0.2s, background-color 0.2s;
+}
+.top-right-box a:hover {
+    transform: scale(1.1);
+    color: peachpuff;
+    background-color: rgba(130, 0, 0, 0.3);
+}
+
+.top-right-box a img {
+    width: 30px;    /* adjust size */
+    height: 30px;   /* keep aspect ratio */
+    transition: transform 0.2s, filter 0.2s;
+}
+
+/* Hover effect */
+.top-right-box a:hover img {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 4px gold);
+}
+
+/* ===== Radial Hub Layout ===== */
+.panel-grid {
+    position: relative;
+    width: 90vw;
+    height: 90vw;
+    max-width: 700px;
+    max-height: 700px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Central Circle ===== */
+.center-circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid gold;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+.center-img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+body.loaded .center-circle,
+body.loaded .center-img {
+    opacity: 1;
+}
+
+/* ===== Panels ===== */
+.panel {
+    position: absolute;
+    width: 220px;
+    height: 150px;
+    border: 2px solid gold;
+    border-radius: 12px;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: gold;
+
+    /* Hidden initially */
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+body.panels-ready .panel {
+    opacity: 1;
+}
+.panel-content {
+    font-size: 2.2rem;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.panel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: gold;
+    font-weight: bold;
+    font-size: 22px;
+    opacity: 1;
+    transition: opacity 0.1s ease;
+    pointer-events: none;
+}
+.panel:hover {
+    transform: scale(1.1);
+    z-index: 3;
+}
+
+/* Circular positioning of surrounding panels */
+.panel:nth-child(1) { transform: rotate(0deg)   translate(280px) rotate(0deg); }
+.panel:nth-child(2) { transform: rotate(60deg)  translate(280px) rotate(-60deg); }
+.panel:nth-child(3) { transform: rotate(120deg) translate(280px) rotate(-120deg); }
+.panel:nth-child(5) { transform: rotate(180deg) translate(280px) rotate(-180deg); }
+.panel:nth-child(6) { transform: rotate(240deg) translate(280px) rotate(-240deg); }
+.panel:nth-child(7) { transform: rotate(300deg) translate(280px) rotate(-300deg); }
+
+/* Expanded panel on click */
+.panel.expand {
+    z-index: 1000;
+    transform: scale(8);
+    transition: transform 0.5s ease;
+    border-radius: 0;
+    background-color: black;
+}
+.panel.expand .panel-content,
+.panel.expand .panel-text {
+    opacity: 0;
+}
+
+#bottomLeftGif {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    width: 300px; /* adjust size as needed */
+    height: auto;
+    z-index: 750;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+body.boxes-ready #bottomLeftGif {
+    opacity: 1;
+}
+
+/* ===== Articles Box ===== */
+.bottom-right-articles {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 220px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid gold;
+    border-radius: 8px;
+    color: gold;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    overflow: visible;  /* let height grow */
+    box-shadow: 0 0 8px gold;
+    z-index: 700;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+body.boxes-ready .bottom-right-articles {
+    opacity: 1;
+}
+
+.bottom-right-articles h3 {
+    margin: 0 0 10px 0;
+    font-size: 25px;
+    text-align: center;
+    color: red; /* heading color */
+}
+
+.bottom-right-articles ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.bottom-right-articles li {
+    margin-bottom: 8px;
+    line-height: 1.2;
+    position: relative;
+}
+
+/* Centered dash below each item except the last */
+.bottom-right-articles li::after {
+    content: "—";
+    display: block;
+    color: gold;
+    margin: 4px auto;
+    font-size: 1rem;
+}
+.bottom-right-articles li:last-child::after {
+    content: "";
+}
+
+.bottom-right-articles li a {
+    color: peachpuff;
+    text-decoration: none;
+    transition: color 0.2s, transform 0.2s;
+}
+.bottom-right-articles li a:hover {
+    color: gold;
+    transform: scale(1.05);
+}

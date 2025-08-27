@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/homestyle.css">
+</head>
+
+<body>
+
+    <!-- Top-left box: time + weather -->
+    <div class="top-left-box" id="topLeftBox">
+        <div id="time"></div>
+        <div id="weatherBox">🌤️<br>Click to set city</div>
+    </div>
+
+    <!-- Top-right box: social/contact links -->
+    <div class="top-right-box">
+        <a href="https://www.linkedin.com/in/yourname" target="_blank" title="LinkedIn">
+            <img src="images/linkedin.svg" alt="LinkedIn">LinkedIn
+        </a>
+        <a href="https://www.github.com/yourname" target="_blank" title="GitHub">
+            <img src="images/github.svg" alt="GitHub">GitHub
+        </a>
+        <a href="#" onclick="copyText('your.email@example.com'); return false;">
+            <img src="images/email.svg" alt="Email">Email
+        </a>
+        <a href="#" onclick="copyText('+1-555-555-5555'); return false;">
+            <img src="images/phone.svg" alt="Phone">Phone
+        </a>
+    </div>
+
+    <!-- Radial Panel Grid -->
+    <div class="panel-grid">
+        <!-- Panel 1 -->
+        <a href="aboutme.html" class="panel">
+            <div class="panel-content">
+                <img src="images/bg1.png" alt="ABOUT ME!" class="panel-img">
+            </div>
+            <span class="panel-text">About me</span>
+        </a>
+
+        <!-- Panel 2 -->
+        <a href="portfolio.html" class="panel">
+            <div class="panel-content">
+                <img src="images/img2.png" alt="Portfolio" class="panel-img">
+            </div>
+            <span class="panel-text">Portfolio</span>
+        </a>
+
+        <!-- Panel 3 -->
+        <a href="blog.html" class="panel">
+            <div class="panel-content">
+                <img src="images/img3.png" alt="Blog" class="panel-img">
+            </div>
+            <span class="panel-text">Blog</span>
+        </a>
+
+        <!-- Panel 4 -->
+        <a href="about.html" class="panel">
+            <div class="panel-content">
+                <img src="images/img4.png" alt="About" class="panel-img">
+            </div>
+            <span class="panel-text">About</span>
+        </a>
+
+        <!-- Panel 5 -->
+        <a href="certificates.html" class="panel">
+            <div class="panel-content">
+                <img src="images/img5.png" alt="Certificates" class="panel-img">
+            </div>
+            <span class="panel-text">Certificates</span>
+        </a>
+
+        <!-- Central Circle with Image -->
+        <div class="center-circle">
+            <img src="images/furina2.gif" alt="Center Image" class="center-img">
+        </div>
+    </div>
+
+    <!-- Bottom-right "My Articles" -->
+    <div class="bottom-right-articles" id="articlesBox">
+        <h3>Popular Articles</h3>
+        <hr color="beige">
+        <ul id="articlesList">
+            <li>Loading articles...</li>
+        </ul>
+    </div>
+
+    <!-- Bottom-left GIF -->
+    <img src="images/furina.gif" alt="Cool GIF" id="bottomLeftGif">
+
+    <!-- Scripts -->
+    <script src="js/hometransitions.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/devto.js"></script>
+    <script>
+        function copyText(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => alert(`Copied: ${text}`))
+                .catch(err => alert('Failed to copy text'));
+        }
+    </script>
+</body>
+
+</html>
